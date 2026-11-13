@@ -1,53 +1,47 @@
-# Metro de londres - Algortimos de Procura
-## Grupo 15 - Estrutura de dados e Algoritmos 2025/2026
+# London Metro – Graph Search Algorithms
 
-## Estrutura dos ficheiros
-```bash 
+Graph model of the London Underground network with shortest-path search (**Dijkstra**), minimum spanning tree (**Kruskal**) and interactive map visualizations.
 
-Grupo15/
-├── README.md
-├── Graph.py
-├── london_network.py
-├── main.py
-├── london_metro.html
-├── london_path_curto_uniform.html
-├── london_path_curto_distance.html
-├── london_path_longo_uniform.html
-├── london_path_longo_distance.html
-├── london_path_transbordos_uniform.html
-├── london_path_transbordos_distance.html
-├── london_mst_uniform.html
-├── london_mst_distance.html
-└── data/
-    ├── stations.csv
-    ├── connections.csv
-    ├── lines.csv
+> **Course:** Data Structures and Algorithms · BSc in Data Science, ISCTE · Year 1, Semester 2 · Group 15 (2025/2026)
 
+## Features
+- Builds the metro network as a graph from CSV data (stations, lines and connections).
+- Network statistics: number of stations and connections, mean degree, mean distance (Haversine).
+- **Dijkstra** shortest path, both a custom implementation and NetworkX for comparison, with two cost types:
+  - *uniform* – every connection costs the same
+  - *distance* – cost is the distance in km between stations
+- Counts line changes along a route.
+- **Kruskal** minimum spanning tree with a Union-Find structure.
+- Interactive maps with Folium.
+
+## Tech stack
+Python · NumPy · NetworkX · Folium
+
+## How to run
+```bash
+pip install numpy folium networkx
+python main.py
 ```
 
-## Descrição dos Ficheiros
+## Project structure
+```
+.
+├── main.py              # Entry point
+├── london_network.py    # LondonNetworkGraph: graph, Dijkstra, Kruskal and visualizations
+├── Graph.py             # Graph ADT (Vertex, Edge, Graph)
+├── report.pdf           # Project report (Portuguese)
+├── data/
+│   ├── stations.csv
+│   ├── connections.csv
+│   └── lines.csv
+└── *.html               # Generated interactive maps
+```
 
-- `main.py` -> ficheiro principal para executar o projeto
-- `london_network.py` -> classe LondonNetworkGraph com implementação do grafo, algoritmos de Dijkstra, Kruskal e visualizações
-- `Graph.py` -> implementação do TAD Grafo (Vertex, Edge, Graph). Foi também adicionado o método público iter_vertex() para permitir iteração sem aceder a métodos protegidos
-- `data\` -> pasta com os ficheiros de dados CSV
-
-
-## Como executar
-
-Instalar dependências:
-pip install numpy folium networkx
-
-Executar o projeto:
-py main.py
-
-## Outputs Gerados
-- `london_metro.html` -> mapa interativo da rede do metro de Londres completa 
-- `london_path_curto_uniform.html` -> trajeto curto com custo uniforme
-- `london_path_curto_distance.html`-> trajeto curto com custo por distância
-- `london_path_longo_uniform.html` -> trajeto longo com custo uniforme 
-- `london_path_longo_distance.html`-> trajeto longo com custo por distância
-- `london_path_transbordos_uniform.html` -> múltiplos transbordos com custo uniforme
-- `london_path_transbordos_distance.html` -> múltiplos transbordos com custo por distância
-- `london_mst_uniform.html` -> MST com custo uniforme
-- `london_mst_distance.html` -> MST com custo por distância
+## Generated outputs
+| File | Description |
+|------|-------------|
+| `london_metro.html` | Full London metro network |
+| `london_path_curto_uniform.html` / `_distance.html` | Short route (uniform / distance cost) |
+| `london_path_longo_uniform.html` / `_distance.html` | Long route (uniform / distance cost) |
+| `london_path_transbordos_uniform.html` / `_distance.html` | Route with multiple line changes (uniform / distance cost) |
+| `london_mst_uniform.html` / `_distance.html` | Minimum spanning tree (uniform / distance cost) |
